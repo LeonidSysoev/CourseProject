@@ -3,7 +3,7 @@ import java.util.Objects;
 public class Employee {
     private String fullName;
     private int departament;
-    private int salary;
+    private float salary;
     public static int counter = 1;
     private int id;
 
@@ -24,7 +24,7 @@ public class Employee {
         return departament;
     }
 
-    public int getSalary() {
+    public float getSalary() {
         return salary;
     }
 
@@ -36,15 +36,15 @@ public class Employee {
         this.departament = departament;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(float salary) {
         this.salary = salary;
     }
 
     @Override
     public String toString() {
-        return "Персонал {" +
-                "Ф.И.О.: " + fullName + '\'' +
-                ", отдел: " + departament + '\'' +
+        return "Персонал - " +
+                "Ф.И.О.: " + fullName +
+                ", отдел: " + departament +
                 ", зарплата: " + salary +
                 ", табельный номер: " + id;
     }
