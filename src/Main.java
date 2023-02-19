@@ -5,185 +5,38 @@ public class Main {
 
 
         EmployeeBook employeeBook = new EmployeeBook();
-        employeeBook.addEmployeer("Иванов", 1, 10000);
-        employeeBook.addEmployeer("Баранов", 1, 10000);
-        employeeBook.addEmployeer("Иванов", 1, 10000);
-        employeeBook.addEmployeer("Иванов", 1, 10000);
-        employeeBook.addEmployeer("Петров", 1, 10000);
-        employeeBook.addEmployeer("Иванов", 1, 10000);
-        employeeBook.addEmployeer("Иванов", 1, 10000);
-        employeeBook.addEmployeer("Виктор", 1, 10000);
-        employeeBook.addEmployeer("Иванов", 1, 10000);
-        employeeBook.addEmployeer("Иванов", 1, 10000);
-
-
+        employeeBook.addEmployeer("Иванов А.А.", 5, 11000);
+        employeeBook.addEmployeer("Баранов Б.Б.", 3, 12000);
+        employeeBook.addEmployeer("Сухов А.В.", 1, 13000);
+        employeeBook.addEmployeer("Егоров С.Р.", 3, 14000);
+        employeeBook.addEmployeer("Петров К.О.", 1, 15000);
+        employeeBook.addEmployeer("Седов А.Д.", 2, 16000);
+        employeeBook.addEmployeer("Георгиев А.К.", 1, 17000);
+        employeeBook.addEmployeer("Викторов С.Ю.", 4, 18000);
+        employeeBook.addEmployeer("Степанов П.П.", 3, 19000);
+        employeeBook.addEmployeer("Принципов Ф.Ф.", 2, 18560);
 
         employeeBook.printEmployees();
         employeeBook.findSumSalary();
         employeeBook.findAverageSalary();
-        employeeBook.getCurrentSize();
-        employeeBook.removeEmployees("Петров");
-        employeeBook.removeEmployees("Викто");
-        employeeBook.removeEmployees("Иванов");
+        System.out.println("employeeBook.getCurrentSize() = " + employeeBook.getCurrentSize());
+        employeeBook.removeEmployees("Петров К.О.");
+        employeeBook.removeEmployees("Викторов С.Ю.");
+        employeeBook.removeEmployees("Иванов А.А.");
+        System.out.println("employeeBook.getCurrentSize() = " + employeeBook.getCurrentSize());
         employeeBook.printEmployees();
-        employeeBook.addEmployeer("Сидоров", 1, 10000);
+        employeeBook.addNewEmployeer("Сидоров А.В.", 1, 10000);
+        employeeBook.addNewEmployeer("Антонов П.А.", 1, 10000);
+        employeeBook.addNewEmployeer("Павлов Т.В.", 1, 10000);
+        System.out.println();
         employeeBook.printEmployees();
-    }
+        employeeBook.changeSalary("Сидоров А.В.", 15000);
+        employeeBook.printEmployees();
+        employeeBook.changeDepartament("Сидоров А.В.", 3);
+        employeeBook.printEmployees();
+        System.out.println();
+        employeeBook.printEmployeeInDepartament();
 
-
-
-
-    public static float findAverageSalary(Employee[] array) {
-        int sum = 0;
-        for (Employee employee : array) {
-            sum += employee.getSalary();
-        }
-        return (float) sum / array.length;
-
-    }
-
-    public static void findMaxSalary(Employee[] array) {
-        float maxSalary = -1f;
-        for (Employee employee : array) {
-            if (maxSalary < employee.getSalary()) {
-                maxSalary = employee.getSalary();
-            }
-        }
-        for (Employee employee : array) {
-            if (employee.getSalary() == maxSalary) {
-                System.out.println("Сотрудник с максимальной зарплатой " + employee);
-            }
-        }
-    }
-
-    public static void findMinSalary(Employee[] array) {
-        float minSalary = 100000000f;
-        for (Employee employee : array) {
-            if (minSalary > employee.getSalary()) {
-                minSalary = employee.getSalary();
-            }
-        }
-        for (Employee employee : array) {
-            if (employee.getSalary() == minSalary) {
-                System.out.println("Сотрудник с минимальной зарплатой " + employee);
-            }
-        }
-    }
-
-    public static void printNameEmployees(Employee[] array) {
-        for (Employee employee : array) {
-            System.out.println("Ф.И.О.: " + employee.getFullName());
-        }
-    }
-
-    public static void indexSalary(Employee[] array, int index) {
-        for (Employee employee : array) {
-            float i1 = employee.getSalary() + (employee.getSalary() * index / 100);
-            employee.setSalary(i1);
-        }
-    }
-
-    public static void findMinSalaryDepartament(Employee[] array, int departament) {
-        float minSalary = 100000000f;
-
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                if (minSalary > employee.getSalary()) {
-                    minSalary = employee.getSalary();
-                }
-            }
-
-        }
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                if (employee.getSalary() == minSalary) {
-                    System.out.println("Сотрудник с минимальной зарплатой  в отделе "
-                            + departament + " " + employee);
-                }
-            }
-        }
-    }
-
-    public static void findMaxSalaryDepartament(Employee[] array, int departament) {
-        float maxSalary = -1f;
-
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                if (maxSalary < employee.getSalary()) {
-                    maxSalary = employee.getSalary();
-                }
-            }
-
-        }
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                if (employee.getSalary() == maxSalary) {
-                    System.out.println("Сотрудник с максимальной зарплатой в отделе "
-                            + departament + " " + employee);
-                }
-            }
-        }
-    }
-
-    public static void findDepartamentSumSalary(Employee[] array, int departament) {
-        int sum = 0;
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                sum += employee.getSalary();
-            }
-        }
-        System.out.println("Сумма зарплат по отделу - " + departament + " = " + sum);
-    }
-
-    public static void findDepartamentAverageSalary(Employee[] array, int departament) {
-        int sum = 0;
-        int count = 0;
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                sum += employee.getSalary();
-                count++;
-            }
-        }
-        float averageSalary = (float) sum / count;
-        System.out.println("Среднее значение зарплат по отделу - " + departament + " равно " +
-                averageSalary + " рублей.");
-    }
-
-    public static void indexDepartamentSalary(Employee[] array, int departament, int index) {
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                float i1 = employee.getSalary() + (employee.getSalary() * index / 100);
-                employee.setSalary(i1);
-            }
-        }
-    }
-
-    public static void printDepartametEmployees(Employee[] array, int departament) {
-        for (Employee employee : array) {
-            if (departament == employee.getDepartament()) {
-                System.out.print("Табельный номер: " + employee.getId() +
-                        "; Ф.И.О.: " + employee.getFullName() + "; Зарплата: " + employee.getSalary());
-                System.out.println();
-            }
-        }
-    }
-
-    public static void findSalaryMoreThanNumber(Employee[] array, float number) {
-        for (Employee employee : array) {
-            if (number <= employee.getSalary()) {
-                System.out.println("Табельный номер: " + employee.getId() +
-                        "; Ф.И.О.: " + employee.getFullName() + "; Зарплата: " + employee.getSalary());
-            }
-        }
-    }
-
-    public static void findSalaryLessThanNumber(Employee[] array, float number) {
-        for (Employee employee : array) {
-            if (number > employee.getSalary()) {
-                System.out.println("Табельный номер: " + employee.getId() +
-                        "; Ф.И.О.: " + employee.getFullName() + "; Зарплата: " + employee.getSalary());
-            }
-        }
     }
 
 }
