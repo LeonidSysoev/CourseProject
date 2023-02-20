@@ -103,6 +103,7 @@ public class EmployeeBook {
             System.out.println("Сотрудники в отделе - " + employee.getDepartament());
 
             if (employee.getDepartament() == employee.getDepartament()) {
+
                 System.out.println(employee.getFullName());
             }
         }
